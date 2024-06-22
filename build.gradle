@@ -4,6 +4,12 @@ plugins {
   id 'java'
 }
 
+sonarqube {
+  properties {
+    property "sonar.scanner.metadataFilePath", "${project.buildDir}/sonar/report-task.txt"
+  }
+}
+
 apply plugin: 'java'
 
 group = 'org.springframework.samples'

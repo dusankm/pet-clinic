@@ -9,6 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Hola mUNDO
-      run: |
-        echo "Hola mundo"
+    - name: Set up JDK 17
+      uses: actions/setups-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Log
+      run: ls -R

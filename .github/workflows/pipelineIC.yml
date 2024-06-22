@@ -64,7 +64,11 @@ jobs:
         -Dsonar.host.url=https://sonarcloud.io \
         -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
         -Dsonar.branch.name=feat-devsecops
-        
+
+    - name: List .scannerwork directory
+      run: |
+        ls -la .scannerwork/
+
     - name: SonarQube Quality Gate Check
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

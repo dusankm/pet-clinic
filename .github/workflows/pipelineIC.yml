@@ -65,3 +65,10 @@ jobs:
         -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
         -Dsonar.branch.name=feat-devsecops
         
+    - name: SonarQube Quality Gate Check
+      env:
+        SONAR_TOKEN: ${{secrets.SECRET_SONAR}}
+      uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+      with:
+        scanMetadataReportFile: target/sonar/report-task.txt
+        

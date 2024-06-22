@@ -40,15 +40,14 @@ jobs:
       id: validandoProjectOnSonar
       run: | 
         set +e
-        RESPONSE=$(curl -v -f -X POST -u '${{ secrets.SONAR_TOKEN }}:' 'https://sonarcloud.io/api/projects/create' -d 'name=pet-clinic' -d 'project=pet-clinic' -d 'organization=dusankm' -d 'visibility=public' 2>&1)
-        echo "$RESPONSE"        
+        curl -f -X POST -u '${{ secrets.SONAR_TOKEN }}:' 'https://sonarcloud.io/api/projects/create' -d 'name=${{ github.event.repository.name }}' -d 'project=${{ github.event.repository.name }}' -d 'organization=dusankm' -d 'visibility=public'       
         if [ $? -ne 0 ]
         then
           echo "Proyecto ya existe en Sonarcloud"
         else
-          echo "Proyecto pet-clinic fue creado exitosamente en sonarcloude"
+          echo "Proyecto ${{ github.event.repository.name }} fue creado exitosamente en sonarcloude"
 
           echo "Se establece rama main como rama por defecto"
-          curl -X POST -u '${{ secrets.SONAR_TOKEN }}:' 'https://sonarcloud.io/api/project_branches/rename' -d 'name=main' -d 'project=pet-clinic'
+          curl -X POST -u '${{ secrets.SONAR_TOKEN }}:' 'https://sonarcloud.io/api/project_branches/rename' -d 'name=main' -d 'project=${{ github.event.repository.name }}'
         fi
         

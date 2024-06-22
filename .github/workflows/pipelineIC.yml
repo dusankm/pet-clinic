@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Hola mUNDO
-        runs: |
-          echo "Hola mundo"
+    - name: Hola mUNDO
+      run: |
+        echo "Hola mundo"

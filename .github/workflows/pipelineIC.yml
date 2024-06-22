@@ -5,7 +5,7 @@ on:
       - feat-devsecops
 
 jobs:
-  Build:
+  SAST:
     runs-on: ubuntu-latest
     steps:
 
@@ -20,3 +20,8 @@ jobs:
 
     - name: Log
       run: ls -R
+
+    - name: Build
+      run: |
+        chmod 777 gradlew
+        ./gradlew build
